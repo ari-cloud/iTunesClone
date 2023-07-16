@@ -1,8 +1,5 @@
-//
-//  HomeScreenViewModel.swift
-//  iTunes
-//
-//  Created by Арина Моргачева on 16.07.2023.
-//
-
 import Foundation
+
+class HomeScreenViewModel {
+    let historyList = ["love", "favourite", "zombie", "my last make me think like i would never try again", "something random", "face", "на русском", "eight", "hello", "another long string"]
+}
