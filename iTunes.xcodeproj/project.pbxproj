@@ -13,6 +13,7 @@
 		CA2272342A63FAE700CEC8D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2272332A63FAE700CEC8D9 /* Assets.xcassets */; };
 		CA2272372A63FAE700CEC8D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA2272352A63FAE700CEC8D9 /* LaunchScreen.storyboard */; };
 		CA2272422A641BBE00CEC8D9 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272412A641BBE00CEC8D9 /* HomeScreenViewModel.swift */; };
+		CA2272452A657C3100CEC8D9 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272442A657C3100CEC8D9 /* PlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CA2272362A63FAE700CEC8D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA2272382A63FAE700CEC8D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA2272412A641BBE00CEC8D9 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
+		CA2272442A657C3100CEC8D9 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		CA22723F2A64024400CEC8D9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				CA2272432A657C0E00CEC8D9 /* Player */,
 				CA2272402A64024C00CEC8D9 /* HomeScreen */,
 			);
 			path = Modules;
@@ -89,6 +92,14 @@
 				CA2272412A641BBE00CEC8D9 /* HomeScreenViewModel.swift */,
 			);
 			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		CA2272432A657C0E00CEC8D9 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				CA2272442A657C3100CEC8D9 /* PlayerViewController.swift */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2272452A657C3100CEC8D9 /* PlayerViewController.swift in Sources */,
 				CA22722F2A63FAE500CEC8D9 /* HomeScreenViewController.swift in Sources */,
 				CA2272422A641BBE00CEC8D9 /* HomeScreenViewModel.swift in Sources */,
 				CA22722B2A63FAE500CEC8D9 /* AppDelegate.swift in Sources */,
@@ -308,6 +320,7 @@
 				INFOPLIST_FILE = iTunes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -336,6 +349,7 @@
 				INFOPLIST_FILE = iTunes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
