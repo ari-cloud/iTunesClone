@@ -14,10 +14,16 @@
 		CA2272372A63FAE700CEC8D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA2272352A63FAE700CEC8D9 /* LaunchScreen.storyboard */; };
 		CA2272422A641BBE00CEC8D9 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272412A641BBE00CEC8D9 /* HomeScreenViewModel.swift */; };
 		CA2272452A657C3100CEC8D9 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272442A657C3100CEC8D9 /* PlayerViewController.swift */; };
+		CA2272472A66CF6F00CEC8D9 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272462A66CF6F00CEC8D9 /* PlayerViewModel.swift */; };
+		CA22724B2A66D01800CEC8D9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA22724A2A66D01800CEC8D9 /* NetworkManager.swift */; };
+		CA22724E2A66D0B200CEC8D9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CA22724D2A66D0B200CEC8D9 /* RxCocoa */; };
+		CA2272502A66D0B200CEC8D9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CA22724F2A66D0B200CEC8D9 /* RxSwift */; };
+		CA2272532A66D22900CEC8D9 /* ResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272522A66D22900CEC8D9 /* ResultDTO.swift */; };
+		CA2272552A6804D300CEC8D9 /* CatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272542A6804D300CEC8D9 /* CatDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CA2272272A63FAE500CEC8D9 /* iTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA2272272A63FAE500CEC8D9 /* CloneMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloneMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA22722A2A63FAE500CEC8D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA22722C2A63FAE500CEC8D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CA22722E2A63FAE500CEC8D9 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +32,10 @@
 		CA2272382A63FAE700CEC8D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA2272412A641BBE00CEC8D9 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		CA2272442A657C3100CEC8D9 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		CA2272462A66CF6F00CEC8D9 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		CA22724A2A66D01800CEC8D9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CA2272522A66D22900CEC8D9 /* ResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDTO.swift; sourceTree = "<group>"; };
+		CA2272542A6804D300CEC8D9 /* CatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2272502A66D0B200CEC8D9 /* RxSwift in Frameworks */,
+				CA22724E2A66D0B200CEC8D9 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,7 +62,7 @@
 		CA2272282A63FAE500CEC8D9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CA2272272A63FAE500CEC8D9 /* iTunes.app */,
+				CA2272272A63FAE500CEC8D9 /* CloneMusic.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,6 +70,7 @@
 		CA2272292A63FAE500CEC8D9 /* iTunes */ = {
 			isa = PBXGroup;
 			children = (
+				CA2272482A66CFED00CEC8D9 /* Data */,
 				CA22723E2A64022D00CEC8D9 /* UI */,
 				CA22722A2A63FAE500CEC8D9 /* AppDelegate.swift */,
 				CA22722C2A63FAE500CEC8D9 /* SceneDelegate.swift */,
@@ -98,16 +111,43 @@
 			isa = PBXGroup;
 			children = (
 				CA2272442A657C3100CEC8D9 /* PlayerViewController.swift */,
+				CA2272462A66CF6F00CEC8D9 /* PlayerViewModel.swift */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		CA2272482A66CFED00CEC8D9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CA2272492A66CFF900CEC8D9 /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		CA2272492A66CFF900CEC8D9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CA2272512A66D21500CEC8D9 /* Models */,
+				CA22724A2A66D01800CEC8D9 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CA2272512A66D21500CEC8D9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CA2272522A66D22900CEC8D9 /* ResultDTO.swift */,
+				CA2272542A6804D300CEC8D9 /* CatDTO.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CA2272262A63FAE500CEC8D9 /* iTunes */ = {
+		CA2272262A63FAE500CEC8D9 /* CloneMusic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CA22723B2A63FAE700CEC8D9 /* Build configuration list for PBXNativeTarget "iTunes" */;
+			buildConfigurationList = CA22723B2A63FAE700CEC8D9 /* Build configuration list for PBXNativeTarget "CloneMusic" */;
 			buildPhases = (
 				CA2272232A63FAE500CEC8D9 /* Sources */,
 				CA2272242A63FAE500CEC8D9 /* Frameworks */,
@@ -117,9 +157,13 @@
 			);
 			dependencies = (
 			);
-			name = iTunes;
+			name = CloneMusic;
+			packageProductDependencies = (
+				CA22724D2A66D0B200CEC8D9 /* RxCocoa */,
+				CA22724F2A66D0B200CEC8D9 /* RxSwift */,
+			);
 			productName = iTunes;
-			productReference = CA2272272A63FAE500CEC8D9 /* iTunes.app */;
+			productReference = CA2272272A63FAE500CEC8D9 /* CloneMusic.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -137,7 +181,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CA2272222A63FAE500CEC8D9 /* Build configuration list for PBXProject "iTunes" */;
+			buildConfigurationList = CA2272222A63FAE500CEC8D9 /* Build configuration list for PBXProject "CloneMusic" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -146,11 +190,14 @@
 				Base,
 			);
 			mainGroup = CA22721E2A63FAE500CEC8D9;
+			packageReferences = (
+				CA22724C2A66D0B200CEC8D9 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = CA2272282A63FAE500CEC8D9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CA2272262A63FAE500CEC8D9 /* iTunes */,
+				CA2272262A63FAE500CEC8D9 /* CloneMusic */,
 			);
 		};
 /* End PBXProject section */
@@ -172,9 +219,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2272532A66D22900CEC8D9 /* ResultDTO.swift in Sources */,
 				CA2272452A657C3100CEC8D9 /* PlayerViewController.swift in Sources */,
+				CA2272552A6804D300CEC8D9 /* CatDTO.swift in Sources */,
 				CA22722F2A63FAE500CEC8D9 /* HomeScreenViewController.swift in Sources */,
 				CA2272422A641BBE00CEC8D9 /* HomeScreenViewModel.swift in Sources */,
+				CA22724B2A66D01800CEC8D9 /* NetworkManager.swift in Sources */,
+				CA2272472A66CF6F00CEC8D9 /* PlayerViewModel.swift in Sources */,
 				CA22722B2A63FAE500CEC8D9 /* AppDelegate.swift in Sources */,
 				CA22722D2A63FAE500CEC8D9 /* SceneDelegate.swift in Sources */,
 			);
@@ -369,7 +420,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CA2272222A63FAE500CEC8D9 /* Build configuration list for PBXProject "iTunes" */ = {
+		CA2272222A63FAE500CEC8D9 /* Build configuration list for PBXProject "CloneMusic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CA2272392A63FAE700CEC8D9 /* Debug */,
@@ -378,7 +429,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CA22723B2A63FAE700CEC8D9 /* Build configuration list for PBXNativeTarget "iTunes" */ = {
+		CA22723B2A63FAE700CEC8D9 /* Build configuration list for PBXNativeTarget "CloneMusic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CA22723C2A63FAE700CEC8D9 /* Debug */,
@@ -388,6 +439,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CA22724C2A66D0B200CEC8D9 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA22724D2A66D0B200CEC8D9 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA22724C2A66D0B200CEC8D9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		CA22724F2A66D0B200CEC8D9 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA22724C2A66D0B200CEC8D9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CA22721F2A63FAE500CEC8D9 /* Project object */;
 }

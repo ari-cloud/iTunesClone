@@ -2,6 +2,12 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     
+    private var vm: PlayerViewModel?
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private let collectionImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -161,8 +167,8 @@ class PlayerViewController: UIViewController {
     private func setupAutoLayout() {
         collectionImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
         collectionImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        collectionImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.8).isActive = true
-        collectionImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.8).isActive = true
+        collectionImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.45 - 20).isActive = true
+        collectionImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.45 - 20).isActive = true
         
         favouriteButton.centerYAnchor.constraint(equalTo: songLabel.centerYAnchor).isActive = true
         favouriteButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.05).isActive = true
@@ -191,15 +197,16 @@ class PlayerViewController: UIViewController {
         backwardButton.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -20).isActive = true
         backwardButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         
-        playButton.topAnchor.constraint(equalTo: songProgress.bottomAnchor, constant: 30).isActive = true
+        playButton.topAnchor.constraint(equalTo: songProgress.bottomAnchor, constant: 20).isActive = true
         playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         playButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        playButton.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.3).isActive = true
         
         forwardButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
         forwardButton.leadingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: 20).isActive = true
         forwardButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         
-        soundLevel.topAnchor.constraint(equalTo: playButton.bottomAnchor, constant: 30).isActive = true
+        soundLevel.topAnchor.constraint(equalTo: playButton.bottomAnchor, constant: 20).isActive = true
         soundLevel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         soundLevel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.7).isActive = true
         
@@ -208,6 +215,5 @@ class PlayerViewController: UIViewController {
         
         speakerLoudView.centerYAnchor.constraint(equalTo: soundLevel.centerYAnchor).isActive = true
         speakerLoudView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(UIScreen.main.bounds.width * 0.05)).isActive = true
-    
     }
 }
