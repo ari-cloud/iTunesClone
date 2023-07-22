@@ -1,5 +1,6 @@
 import Foundation
 import RxSwift
+import UIKit
 
 class HomeScreenViewModel {
     let historyList = ["love", "favourite", "zombie", "my last make me think like i would never try again", "something random", "face", "на русском", "eight", "hello", "another long string"]
@@ -38,6 +39,30 @@ class HomeScreenViewModel {
                 }
             }
             .disposed(by: disposeBag)
+    }
+    
+    func getImages(from result: ResultDTO) {
+        var images: [UIImage] = []
+        for i in 0..<(result.resultCount ?? 0) {
+            guard let url = URL(string: result.results?[i].artworkUrl100 ?? "") else { return }
+            let request = URLRequest(url: url)
+            URLSession.shared.rx
+                .response(request: request)
+                .subscribe(on: MainScheduler.instance)
+                .subscribe { result in
+                    switch result {
+                    case .next(let data):
+                        if let image = UIImage(data: data.data) {
+                            images.append(image)
+                        }
+                    case .error(let error):
+                        print("DEBUG: Finish getting imsge with error: \(error.localizedDescription)")
+                    case .completed:
+                        print("DEBUG: Complete getting image")
+                    }
+                }
+                .disposed(by: disposeBag)
+        }
     }
     
     func getSongs(from result: ResultDTO) -> [Song] {
