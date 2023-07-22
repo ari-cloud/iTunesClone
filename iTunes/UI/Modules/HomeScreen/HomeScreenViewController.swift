@@ -1,8 +1,10 @@
 import UIKit
+import RxSwift
 
-class HomeScreenViewController: UIViewController {
+class HomeScreenViewController: UIViewController, UIScrollViewDelegate {
     
     private let vm = HomeScreenViewModel()
+    private let disposeBag = DisposeBag()
     
     private let textField: UITextField = {
         let textField = TextField()
@@ -10,8 +12,6 @@ class HomeScreenViewController: UIViewController {
         textField.backgroundColor = .tertiarySystemBackground
         let leftImage = UIImage(systemName: "magnifyingglass")
         textField.leftImage(leftImage, imageWidth: 30, padding: 5)
-        let rightImage = UIImage(systemName: "xmark.circle.fill")
-        textField.rightImage(rightImage, imageWidth: 30, padding: 5)
         textField.layer.cornerRadius = 10
         let placeholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         textField.attributedPlaceholder = placeholder
@@ -40,6 +40,14 @@ class HomeScreenViewController: UIViewController {
         stack.alignment = .center
         return stack
     }()
+    
+    private let songsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.rowHeight = 80
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    } ()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +63,31 @@ class HomeScreenViewController: UIViewController {
         view.addSubview(bgView)
         bgView.addSubview(historyLabel)
         bgView.addSubview(stack)
+        bgView.addSubview(songsTableView)
         setupStack()
         setupAutoLayout()
+        bindFavouriteTableView()
+        
+        textField.rx.text
+            .orEmpty
+            .bind(to: vm.keyword)
+            .disposed(by: disposeBag)
+        
+        vm.keyword.subscribe { [weak self] text in
+            guard let self else { return }
+            let btnView = UIButton()
+            btnView.addTarget(self, action: #selector(closeBtnDidTap), for: .touchUpInside)
+            if text == "" {
+                if let rightImage = UIImage(named: "") {
+                    self.textField.setRightViewIcon(icon: rightImage, btnView: btnView)
+                } else {
+                    if let rightImage = UIImage(systemName: "xmark.circle.fill") {
+                        self.textField.setRightViewIcon(icon: rightImage, btnView: btnView)
+                    }
+                }
+            }
+        }
+        .disposed(by: disposeBag)
     }
     
     func setupStack() {
@@ -87,10 +118,30 @@ class HomeScreenViewController: UIViewController {
         stack.centerYAnchor.constraint(equalTo: bgView.centerYAnchor).isActive = true
         stack.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 20).isActive = true
         stack.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -20).isActive = true
+        
+        songsTableView.topAnchor.constraint(equalTo: bgView.topAnchor).isActive = true
+        songsTableView.bottomAnchor.constraint(equalTo: bgView.bottomAnchor).isActive = true
+        songsTableView.leadingAnchor.constraint(equalTo: bgView.leadingAnchor).isActive = true
+        songsTableView.trailingAnchor.constraint(equalTo: bgView.trailingAnchor).isActive = true
     }
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    @objc func closeBtnDidTap() {
+        vm.keyword.onNext("")
+        textField.text = ""
+    }
+    
+    private func bindFavouriteTableView() {
+        songsTableView.register(SongCell.self, forCellReuseIdentifier: SongCell.cellId)
+        songsTableView.rx.setDelegate(self).disposed(by: disposeBag)
+        vm.songs.bind(to: songsTableView.rx.items(cellIdentifier: SongCell.cellId, cellType: SongCell.self)) {index, item, cell in
+            cell.songLabel.text = item.songName
+            cell.artistLabel.text = item.artistName
+            cell.albumLabel.text = " - " + item.collectionName
+        }.disposed(by: disposeBag)
     }
 }
 
@@ -133,7 +184,18 @@ extension UITextField {
         containerView.addSubview(imageView)
         rightView = containerView
         rightViewMode = .always
-        
+    }
+    
+    func setRightViewIcon(icon: UIImage, btnView: UIButton) {
+        btnView.frame = CGRect(x: 0, y: 0, width: ((self.frame.height) * 0.60), height: ((self.frame.height) * 0.60))
+        btnView.setImage(icon , for: .normal)
+        btnView.tintColor = .gray
+        var configuration = UIButton.Configuration.borderless()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: -16, bottom: 0, trailing: 0)
+        btnView.configuration = configuration
+        self.rightViewMode = .whileEditing
+        self.rightView = btnView
     }
 }
+
 

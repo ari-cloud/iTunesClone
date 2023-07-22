@@ -20,6 +20,8 @@
 		CA2272502A66D0B200CEC8D9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CA22724F2A66D0B200CEC8D9 /* RxSwift */; };
 		CA2272532A66D22900CEC8D9 /* ResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272522A66D22900CEC8D9 /* ResultDTO.swift */; };
 		CA2272552A6804D300CEC8D9 /* CatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272542A6804D300CEC8D9 /* CatDTO.swift */; };
+		CA2272572A68399100CEC8D9 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272562A68399100CEC8D9 /* SongCell.swift */; };
+		CA22725A2A6AB08F00CEC8D9 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272592A6AB08F00CEC8D9 /* Song.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		CA22724A2A66D01800CEC8D9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CA2272522A66D22900CEC8D9 /* ResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDTO.swift; sourceTree = "<group>"; };
 		CA2272542A6804D300CEC8D9 /* CatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDTO.swift; sourceTree = "<group>"; };
+		CA2272562A68399100CEC8D9 /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		CA2272592A6AB08F00CEC8D9 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 		CA2272292A63FAE500CEC8D9 /* iTunes */ = {
 			isa = PBXGroup;
 			children = (
+				CA2272582A6AB06900CEC8D9 /* Models */,
 				CA2272482A66CFED00CEC8D9 /* Data */,
 				CA22723E2A64022D00CEC8D9 /* UI */,
 				CA22722A2A63FAE500CEC8D9 /* AppDelegate.swift */,
@@ -103,6 +108,7 @@
 			children = (
 				CA22722E2A63FAE500CEC8D9 /* HomeScreenViewController.swift */,
 				CA2272412A641BBE00CEC8D9 /* HomeScreenViewModel.swift */,
+				CA2272562A68399100CEC8D9 /* SongCell.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -138,6 +144,14 @@
 			children = (
 				CA2272522A66D22900CEC8D9 /* ResultDTO.swift */,
 				CA2272542A6804D300CEC8D9 /* CatDTO.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CA2272582A6AB06900CEC8D9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CA2272592A6AB08F00CEC8D9 /* Song.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -224,9 +238,11 @@
 				CA2272552A6804D300CEC8D9 /* CatDTO.swift in Sources */,
 				CA22722F2A63FAE500CEC8D9 /* HomeScreenViewController.swift in Sources */,
 				CA2272422A641BBE00CEC8D9 /* HomeScreenViewModel.swift in Sources */,
+				CA22725A2A6AB08F00CEC8D9 /* Song.swift in Sources */,
 				CA22724B2A66D01800CEC8D9 /* NetworkManager.swift in Sources */,
 				CA2272472A66CF6F00CEC8D9 /* PlayerViewModel.swift in Sources */,
 				CA22722B2A63FAE500CEC8D9 /* AppDelegate.swift in Sources */,
+				CA2272572A68399100CEC8D9 /* SongCell.swift in Sources */,
 				CA22722D2A63FAE500CEC8D9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
