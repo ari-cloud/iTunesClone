@@ -141,6 +141,7 @@ class HomeScreenViewController: UIViewController, UIScrollViewDelegate {
             cell.songLabel.text = item.songName
             cell.artistLabel.text = item.artistName
             cell.albumLabel.text = " - " + item.collectionName
+            cell.albumImage.image = item.image
         }.disposed(by: disposeBag)
     }
 }

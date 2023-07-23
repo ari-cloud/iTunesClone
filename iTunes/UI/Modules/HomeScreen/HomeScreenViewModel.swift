@@ -4,9 +4,11 @@ import UIKit
 
 class HomeScreenViewModel {
     let historyList = ["love", "favourite", "zombie", "my last make me think like i would never try again", "something random", "face", "на русском", "eight", "hello", "another long string"]
-    let songs = PublishSubject<[Song]>() 
-    
+    let songs = PublishSubject<[Song]>()
+    let imagesArray = PublishSubject<[UIImage]>()
     var keyword = PublishSubject<String?>()
+    
+    private var images: [UIImage] = []
     private let networkManager = NetworkManager()
     private let disposeBag = DisposeBag()
     
@@ -28,6 +30,7 @@ class HomeScreenViewModel {
                 case .next(let data):
                     print("DEBUG: Next")
                     guard let result = try? JSONDecoder().decode(ResultDTO.self, from: data) else { return }
+                    self.getImages(from: result)
                     DispatchQueue.main.async { [weak self] in
                         guard let self else { return }
                         self.songs.onNext(self.getSongs(from: result))
@@ -42,7 +45,6 @@ class HomeScreenViewModel {
     }
     
     func getImages(from result: ResultDTO) {
-        var images: [UIImage] = []
         for i in 0..<(result.resultCount ?? 0) {
             guard let url = URL(string: result.results?[i].artworkUrl100 ?? "") else { return }
             let request = URLRequest(url: url)
@@ -53,7 +55,7 @@ class HomeScreenViewModel {
                     switch result {
                     case .next(let data):
                         if let image = UIImage(data: data.data) {
-                            images.append(image)
+                            self.images.append(image)
                         }
                     case .error(let error):
                         print("DEBUG: Finish getting imsge with error: \(error.localizedDescription)")

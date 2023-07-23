@@ -2,11 +2,11 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     
-    private var vm: PlayerViewModel?
+    private var vm: PlayerViewModel = PlayerViewModel()
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     private let collectionImageView: UIImageView = {
         let imageView = UIImageView()
@@ -54,10 +54,10 @@ class PlayerViewController: UIViewController {
         return btn
     }()
     
-    private let songProgress: UIProgressView = {
-        let progress = UIProgressView()
+    private let songProgress: UISlider = {
+        let progress = UISlider()
         progress.translatesAutoresizingMaskIntoConstraints = false
-        progress.setProgress(0.3, animated: true)
+        progress.setValue(0.3, animated: true)
         return progress
     }()
     
