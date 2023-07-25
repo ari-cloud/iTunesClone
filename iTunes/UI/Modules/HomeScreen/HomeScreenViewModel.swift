@@ -3,8 +3,9 @@ import RxSwift
 import UIKit
 
 class HomeScreenViewModel {
+    var songs: [Song] = []
     let historyList = ["love", "favourite", "zombie", "my last make me think like i would never try again", "something random", "face", "на русском", "eight", "hello", "another long string"]
-    let songs = PublishSubject<[Song]>()
+    let songsPublished = PublishSubject<[Song]>()
     let imagesArray = PublishSubject<[UIImage]>()
     var keyword = PublishSubject<String?>()
     
@@ -33,7 +34,7 @@ class HomeScreenViewModel {
                     self.getImages(from: result)
                     DispatchQueue.main.async { [weak self] in
                         guard let self else { return }
-                        self.songs.onNext(self.getSongs(from: result))
+                        self.songsPublished.onNext(self.getSongs(from: result))
                     }
                 case .error(let error):
                     print("DEBUG: Finish with error: \(error.localizedDescription)")
@@ -68,7 +69,6 @@ class HomeScreenViewModel {
     }
     
     func getSongs(from result: ResultDTO) -> [Song] {
-        var songs: [Song] = []
         for i in 0..<(result.resultCount ?? 0) {
             if let resultItem = result.results?[i] {
                 let song = Song(result: resultItem)

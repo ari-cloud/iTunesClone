@@ -22,6 +22,8 @@
 		CA2272552A6804D300CEC8D9 /* CatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272542A6804D300CEC8D9 /* CatDTO.swift */; };
 		CA2272572A68399100CEC8D9 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272562A68399100CEC8D9 /* SongCell.swift */; };
 		CA22725A2A6AB08F00CEC8D9 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2272592A6AB08F00CEC8D9 /* Song.swift */; };
+		CA2272632A6EAE0C00CEC8D9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2272622A6EAE0C00CEC8D9 /* AVFoundation.framework */; };
+		CA2272652A6EAE2700CEC8D9 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2272642A6EAE2700CEC8D9 /* AVKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		CA2272542A6804D300CEC8D9 /* CatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDTO.swift; sourceTree = "<group>"; };
 		CA2272562A68399100CEC8D9 /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		CA2272592A6AB08F00CEC8D9 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		CA2272622A6EAE0C00CEC8D9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CA2272642A6EAE2700CEC8D9 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2272652A6EAE2700CEC8D9 /* AVKit.framework in Frameworks */,
+				CA2272632A6EAE0C00CEC8D9 /* AVFoundation.framework in Frameworks */,
 				CA2272502A66D0B200CEC8D9 /* RxSwift in Frameworks */,
 				CA22724E2A66D0B200CEC8D9 /* RxCocoa in Frameworks */,
 			);
@@ -60,6 +66,7 @@
 			children = (
 				CA2272292A63FAE500CEC8D9 /* iTunes */,
 				CA2272282A63FAE500CEC8D9 /* Products */,
+				CA2272612A6EAE0B00CEC8D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,6 +161,15 @@
 				CA2272592A6AB08F00CEC8D9 /* Song.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CA2272612A6EAE0B00CEC8D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA2272642A6EAE2700CEC8D9 /* AVKit.framework */,
+				CA2272622A6EAE0C00CEC8D9 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

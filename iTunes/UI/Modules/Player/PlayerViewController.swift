@@ -2,11 +2,7 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     
-    private var vm: PlayerViewModel = PlayerViewModel()
-    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    var vm: PlayerViewModel?
     
     private let collectionImageView: UIImageView = {
         let imageView = UIImageView()
@@ -57,6 +53,8 @@ class PlayerViewController: UIViewController {
     private let songProgress: UISlider = {
         let progress = UISlider()
         progress.translatesAutoresizingMaskIntoConstraints = false
+        let image = UIImage(systemName: "circle.fill")
+        progress.setThumbImage(image, for: .normal)
         progress.setValue(0.3, animated: true)
         return progress
     }()
@@ -68,6 +66,7 @@ class PlayerViewController: UIViewController {
         let image = UIImage(systemName: "backward.fill", withConfiguration: config)
         btn.setImage(image, for: .normal)
         btn.tintColor = .gray
+        btn.addTarget(self, action: #selector(backwardBtnDidTap), for: .touchUpInside)
         return btn
     }()
     
@@ -75,11 +74,10 @@ class PlayerViewController: UIViewController {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         let config = UIImage.SymbolConfiguration(pointSize: 50)
-        let playImage = UIImage(systemName: "play.fill", withConfiguration: config)
         let pauseImage = UIImage(systemName: "pause.fill", withConfiguration: config)
-        btn.setImage(playImage, for: .normal)
-        btn.setImage(pauseImage, for: .selected)
+        btn.setImage(pauseImage, for: .normal)
         btn.tintColor = .gray
+        btn.addTarget(self, action: #selector(playButtonAction), for: .touchUpInside)
         return btn
     }()
     
@@ -90,6 +88,7 @@ class PlayerViewController: UIViewController {
         let image = UIImage(systemName: "forward.fill", withConfiguration: config)
         btn.setImage(image, for: .normal)
         btn.tintColor = .gray
+        btn.addTarget(self, action: #selector(forwardBtnDidTap), for: .touchUpInside)
         return btn
     }()
     
@@ -111,11 +110,14 @@ class PlayerViewController: UIViewController {
         return label
     }()
     
-    private let soundLevel: UIProgressView = {
-        let progress = UIProgressView()
+    private let soundLevel: UISlider = {
+        let progress = UISlider()
         progress.translatesAutoresizingMaskIntoConstraints = false
-        progress.setProgress(0.45, animated: true)
-        progress.progressTintColor = .gray
+        progress.setValue(0.45, animated: true)
+        let image = UIImage(systemName: "circle.fill")
+        progress.tintColor = .gray
+        progress.setThumbImage(image, for: .normal)
+        progress.minimumTrackTintColor = .gray
         return progress
     }()
     
@@ -143,6 +145,23 @@ class PlayerViewController: UIViewController {
         view.backgroundColor = .secondarySystemGroupedBackground
         
         setupView()
+    }
+    
+    @objc func backwardBtnDidTap() {
+        vm?.backwardStopButtonDidTap()
+    }
+    
+    @objc func playButtonAction() {
+        vm?.isPlaying.toggle()
+        let config = UIImage.SymbolConfiguration(pointSize: 50)
+        let playImage = UIImage(systemName: "play.fill", withConfiguration: config)
+        let pauseImage = UIImage(systemName: "pause.fill", withConfiguration: config)
+        playButton.setImage((vm?.isPlaying ?? false) ? pauseImage : playImage, for: UIControl.State.normal)
+        vm?.playStopButtonDidTap()
+    }
+    
+    @objc func forwardBtnDidTap() {
+        vm?.farwardStopButtonDidTap()
     }
     
     private func setupView() {

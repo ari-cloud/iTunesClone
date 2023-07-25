@@ -8,6 +8,7 @@ class Song {
     var artistName: String
     var collectionName: String
     var imageUrl: String
+    var songUrl: String
     var time: String?
     var image: UIImage?
     
@@ -18,6 +19,7 @@ class Song {
         self.artistName = result.artistName ?? ""
         self.collectionName = result.collectionName ?? ""
         self.imageUrl = result.artworkUrl100 ?? ""
+        self.songUrl = result.previewUrl ?? ""
         self.time = getTime(time: result.trackTimeMillis ?? 0)
         getImage(from: self.imageUrl)
     }
@@ -29,24 +31,24 @@ class Song {
     }
     
     func getImage(from url: String) {
-            guard let url = URL(string: url) else { return }
-            let request = URLRequest(url: url)
-            URLSession.shared.rx
-                .response(request: request)
-                .subscribe(on: MainScheduler.instance)
-                .subscribe { result in
-                    switch result {
-                    case .next(let data):
-                        if let image = UIImage(data: data.data) {
-                            self.image = image
-                        }
-                    case .error(let error):
-                        print("DEBUG: Finish getting imsge with error: \(error.localizedDescription)")
-                    case .completed:
-                        print("DEBUG: Complete getting image")
+        guard let url = URL(string: url) else { return }
+        let request = URLRequest(url: url)
+        URLSession.shared.rx
+            .response(request: request)
+            .subscribe(on: MainScheduler.instance)
+            .subscribe { result in
+                switch result {
+                case .next(let data):
+                    if let image = UIImage(data: data.data) {
+                        self.image = image
                     }
+                case .error(let error):
+                    print("DEBUG: Finish getting imsge with error: \(error.localizedDescription)")
+                case .completed:
+                    print("DEBUG: Complete getting image")
                 }
-                .disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
         
     }
 }

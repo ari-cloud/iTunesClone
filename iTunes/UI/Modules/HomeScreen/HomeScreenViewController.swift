@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import RxCocoa
 
 class HomeScreenViewController: UIViewController, UIScrollViewDelegate {
     
@@ -137,12 +138,21 @@ class HomeScreenViewController: UIViewController, UIScrollViewDelegate {
     private func bindFavouriteTableView() {
         songsTableView.register(SongCell.self, forCellReuseIdentifier: SongCell.cellId)
         songsTableView.rx.setDelegate(self).disposed(by: disposeBag)
-        vm.songs.bind(to: songsTableView.rx.items(cellIdentifier: SongCell.cellId, cellType: SongCell.self)) {index, item, cell in
+        vm.songsPublished.bind(to: songsTableView.rx.items(cellIdentifier: SongCell.cellId, cellType: SongCell.self)) {index, item, cell in
             cell.songLabel.text = item.songName
             cell.artistLabel.text = item.artistName
             cell.albumLabel.text = " - " + item.collectionName
             cell.albumImage.image = item.image
         }.disposed(by: disposeBag)
+        songsTableView.rx.itemSelected
+            .subscribe { [weak self] indexPath in
+                guard let self else { return }
+                let viewController = PlayerViewController()
+                let viewModel = PlayerViewModel(song: self.vm.songs[indexPath.row], songs: self.vm.songs, index: indexPath.row)
+                viewController.vm = viewModel
+                present(viewController, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
