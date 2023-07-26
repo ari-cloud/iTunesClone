@@ -1,4 +1,5 @@
 import UIKit
+import MediaPlayer
 
 class PlayerViewController: UIViewController {
     
@@ -56,6 +57,7 @@ class PlayerViewController: UIViewController {
         let image = UIImage(systemName: "circle.fill")
         progress.setThumbImage(image, for: .normal)
         progress.setValue(0.3, animated: true)
+        progress.addTarget(self, action: #selector(songProgressAction), for: .valueChanged)
         return progress
     }()
     
@@ -145,6 +147,7 @@ class PlayerViewController: UIViewController {
         view.backgroundColor = .secondarySystemGroupedBackground
         
         setupView()
+        setupProgress()
     }
     
     @objc func backwardBtnDidTap() {
@@ -162,6 +165,20 @@ class PlayerViewController: UIViewController {
     
     @objc func forwardBtnDidTap() {
         vm?.farwardStopButtonDidTap()
+    }
+    
+    @objc func songProgressAction() {
+        vm?.player?.seek(to: CMTime(seconds: Double(songProgress.value), preferredTimescale: 500))
+        self.songDurationLabel.text = "\(songProgress.value)"
+    }
+    
+    private func setupProgress() {
+        guard let vm = vm else { return }
+        songProgress.maximumValue = Float(vm.player?.currentItem?.duration.seconds ?? 0)
+        vm.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: 500), queue: DispatchQueue.main, using: { time in
+            self.songDurationLabel.text = "\(time.seconds)"
+            self.songProgress.value = Float(time.seconds)
+        })
     }
     
     private func setupView() {
